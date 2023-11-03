@@ -1,0 +1,19 @@
+# Docker
+# Build a Docker image
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- main
+
+pool:
+      vmImage: ubuntu-latest
+
+steps:
+
+- task: trivy@1
+  inputs:
+    version: 'latest'
+    image: 'maven:latest'
+    severities: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
+    exitCode: '0'
+    devMode: true
